@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login - EduMaterials</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>EduMaterials</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="materials.html">Access Materials</a>
+  </nav>
+</header>
+<main>
+  <h2>Login to Access Materials</h2>
+  <form id="loginForm">
+    <label for="username">Username:</label><br/>
+    <input type="text" id="username" name="username" required /><br/><br/>
+    <label for="password">Password:</label><br/>
+    <input type="password" id="password" name="password" required /><br/><br/>
+    <button type="submit">Login</button>
+  </form>
+  <p id="message" style="color:red;"></p>
+</main>
+<footer>&copy; 2025 EduMaterials. All rights reserved.</footer>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = e.target.username.value.trim();
+    const password = e.target.password.value.trim();
+
+    // Hardcoded creds
+    const users = {
+      'materials': 'materials1234',
+      'admin': 'admin1234'
+    };
+
+    if (users[username] && users[username] === password) {
+      if(username === 'admin') {
+        localStorage.setItem('role', 'admin');
+        window.location.href = 'admin_dashboard.html';
+      } else {
+        localStorage.setItem('role', 'user');
+        window.location.href = 'dashboard.html';
+      }
+    } else {
+      document.getElementById('message').textContent = 'Invalid username or password!';
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>User Dashboard - EduMaterials</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>EduMaterials</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="materials.html">Access Materials</a>
+    <a href="#" id="logout">Logout</a>
+  </nav>
+</header>
+<main>
+
+  <h2 style="background-color:orange">User Dashboard</h2>
+  <p>Welcome, valued user!</p>
+  <p>To download materials, please make a minimum payment of K20.</p>
+
+  <button id="payBtn">Simulate Payment</button>
+
+  <div id="materialsSection" style="display:none;">
+    <h3>Available Materials</h3>
+    <ul>
+      <li><a href="Networks 9.pdf" >Networks Grade 9 (PDF)</a></li>
+      <li><a href="form1 pc components.pdf" >Form 1 Components of a computer (PDF)</a></li>
+	    <li><a href="8-9 ICT notes.pdf" >ICT notes (PDF)</a></li>
+		  <li><a href="systems 11.pdf" >Systems 11 (PDF)</a></li>
+		    <li><a href="2020 cs senior.pdf" >2020 CS senior past paper (PDF)</a></li>
+			  <li><a href="C++.pptx" >C++ (Pptx)</a></li>
+    </ul>
+  </div>
+  
+</main>
+<footer>&copy; 2025 EduMaterials. All rights reserved.</footer>
+
+<script>
+  // Check role
+  if(localStorage.getItem('role') !== 'user') {
+    alert('Access denied! Please login as user.');
+    window.location.href = 'materials.html';
+  }
+
+  const materialsSection = document.getElementById('materialsSection');
+  const payBtn = document.getElementById('payBtn');
+
+  // Check if user paid (simulate)
+  let paid = localStorage.getItem('paid') === 'true';
+  if(paid) {
+    payBtn.style.display = 'none';
+    materialsSection.style.display = 'block';
+  }
+
+  payBtn.addEventListener('click', () => {
+    alert('Payment of K20 successful!');
+    localStorage.setItem('paid', 'true');
+    payBtn.style.display = 'none';
+    materialsSection.style.display = 'block';
+  });
+
+  document.getElementById('logout').addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = 'materials.html';
+  });
+</script>
+</body>
+</html>

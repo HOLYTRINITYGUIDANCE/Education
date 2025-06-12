@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Upload Materials - EduMaterials</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header>
+  <h1>EduMaterials</h1>
+  <nav>
+    <a href="admin_dashboard.html">Admin Dashboard</a>
+    <a href="#" id="logout">Logout</a>
+  </nav>
+</header>
+<main>
+  <h2>Upload Materials</h2>
+  <p>This is just a simulation. No real upload will occur.</p>
+  <form>
+    <label for="fileInput">Select PDF to Upload:</label><br />
+    <input type="file" id="fileInput" accept="application/pdf" /><br /><br />
+    <button type="button" onclick="alert('Simulated upload!')">Upload</button>
+  </form>
+</main>
+<footer>&copy; 2025 EduMaterials. All rights reserved.</footer>
+
+<script>
+  if(localStorage.getItem('role') !== 'admin') {
+    alert('Access denied! Please login as admin.');
+    window.location.href = 'materials.html';
+  }
+  document.getElementById('logout').addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = 'materials.html';
+  });
+</script>
+</body>
+</html>
